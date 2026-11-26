@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<title>Potensverkstaden – grundpotensform och prefix, åk 7–9</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Träna grundpotensform och prefix: skriv stora och små tal som en siffra gånger tio upphöjt till en exponent. Matematik åk 7–9.">
+<meta name="theme-color" content="#FBF7EF">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header id="hud">
+  <div id="hudVanster">
+    <span id="nivaText">Nivå 1</span>
+    <span class="stjarna" aria-hidden="true">⭐</span><span id="stjarnText" aria-label="stjärnor i denna nivå">0</span>
+  </div>
+  <div id="prickar" aria-hidden="true"></div>
+  <button id="ljud" type="button" aria-label="Stäng av ljudet" aria-pressed="true">🔊</button>
+</header>
+<div id="framsteg" aria-hidden="true"></div>
+
+<main id="spel" hidden>
+  <section id="fraga" aria-live="polite">
+    <p id="fragTexte"></p>
+    <div id="talRuta"><span id="talStort"></span><span id="talPre" hidden></span></div>
+  </section>
+
+  <section id="verkstad">
+    <div id="formel" aria-label="bygg talet">
+      <button id="siffraSlot" type="button" class="slot" aria-label="siffran framför tian, inte vald">?</button>
+      <span class="ganger" aria-hidden="true">×</span>
+      <span class="tio">10</span><span id="expTal" class="exp">?</span>
+      <div id="steg">
+        <button id="expUpp" type="button" aria-label="öka exponenten">▲</button>
+        <button id="expNer" type="button" aria-label="minska exponenten">▼</button>
+      </div>
+      <span id="enhet" class="enhet" hidden></span>
+    </div>
+    <button id="kolla" type="button" disabled>Kolla</button>
+  </section>
+
+  <div id="alternativ"></div>
+
+  <div id="botten">
+    <svg id="kotten" viewBox="0 0 120 130" aria-hidden="true"></svg>
+    <div id="aterkoppling" aria-live="polite"></div>
+    <div id="visning" aria-hidden="true"></div>
+  </div>
+</main>
+
+<section id="startskarm">
+  <div class="start-inner">
+    <svg id="kottenStart" viewBox="0 0 120 130" aria-hidden="true"></svg>
+    <h1>Potensverkstaden</h1>
+    <p class="ingress">Skriv talet som en siffra gånger tio upphöjt till något. Först stora tal,
+      sedan små, sist prefix som kilo och mikro.</p>
+    <ul class="sa-funkar">
+      <li>Tryck på siffran som ska stå framför tian.</li>
+      <li>Tryck ▲ och ▼ tills exponenten stämmer, och sedan på Kolla.</li>
+      <li>Fel svar kostar ingenting – du får en ledtråd och provar igen.</li>
+    </ul>
+    <button id="play" type="button">Spela</button>
+    <details class="larare">
+      <summary>För lärare</summary>
+      <p><strong>Ämne och år:</strong> Matematik, åk 7–9. En mekanik, åtta uppgifter per nivå,
+        cirka tre minuter per nivå – 24 tal på en runda.</p>
+      <p><strong>Lgr22:</strong> MA.7-9.1.3 – ”Tal i potensform. Grundpotensform för att uttrycka
+        små och stora tal samt användning av prefix.” (Skolverket, Syllabus API, hämtad 2026-11-23.)</p>
+      <p>Nivå 1 tar stora tal, nivå 2 små tal (negativ exponent) och nivå 3 prefix – giga, mega,
+        kilo, milli, mikro, nano – med svar i grundenheten. Talen är kontrollerade av
+        <code>verify.cjs</code>: varje uppgift räknas om oberoende och siffran framför tian ska
+        ligga i intervallet 1 till 10.</p>
+      <p>Ingen inloggning, ingen reklam, inga länkar ut, inga uppgifter om barn sparas.</p>
+    </details>
+  </div>
+</section>
+
+<div id="klart" hidden>
+  <div class="klart-inner">
+    <p id="klartStjarnor" class="klart-stjarnor">⭐</p>
+    <h2 id="klartTitel">Nivå 1 klar!</h2>
+    <p id="klartText"></p>
+    <button id="klartKnapp" type="button">Nästa nivå</button>
+    <button id="klartIgen" type="button" class="svag">Spela nivån igen</button>
+  </div>
+</div>
+
+<script src="ljud/lines.js"></script>
+<script src="ljud/rosten.js"></script>
+<script src="data.js"></script>
+<script src="app.js"></script>
+<script src="https://www.skolappar.com/kotten.js" defer></script>
+</body>
+</html>
