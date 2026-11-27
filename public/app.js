@@ -49,13 +49,7 @@
   function tal(text) {
     if (!S.ljud) return;
     try { if (typeof window.__rost === 'function' && window.__rost(text)) return; } catch (e) {}
-    if (!('speechSynthesis' in window)) return;
-    try {
-      window.speechSynthesis.cancel();
-      var u = new SpeechSynthesisUtterance(text);
-      u.lang = 'sv-SE'; u.rate = 0.98; u.pitch = 1.03;
-      window.speechSynthesis.speak(u);
-    } catch (e) {}
+        console.warn('saknar mp3:', text);
   }
   window.addEventListener('pointerdown', function enGang() {
     try { if (ljudCtx && ljudCtx.state === 'suspended') ljudCtx.resume(); } catch (e) {}
@@ -334,7 +328,7 @@
     el.ljud.setAttribute('aria-pressed', String(S.ljud));
     el.ljud.setAttribute('aria-label', S.ljud ? 'Stäng av ljudet' : 'Slå på ljudet');
     if (!S.ljud) {
-      try { if ('speechSynthesis' in window) window.speechSynthesis.cancel(); } catch (e) {}
+      try { if (window.__rostStopp) window.__rostStopp(); } catch (e) {}
       if (typeof window.__rostStopp === 'function') window.__rostStopp();
       if (window.skolappar && window.skolappar.event) window.skolappar.event('sound_off');
     }
